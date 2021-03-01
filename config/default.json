@@ -1,5 +1,5 @@
 {
   "port": 5000,
   "jwtSecret": "asdnwqknekso",
-  "mongoUri": "mongodb+srv://WaffleMonster:1q2w3e4r5t6y7u@cluster0.ebqwj.mongodb.net/recipeApp?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://ThinkPadUser:1q2w3e4r5t6y7u@cluster0.ebqwj.mongodb.net/recipeApp?retryWrites=true&w=majority"
 }
