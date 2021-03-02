@@ -49,8 +49,8 @@ router.post(
 router.post(
   '/login', 
   [
-    check('email', 'Invalid data').normalizeEmail().isEmail(),
-    check('password', 'Invalid password').exists()
+    check('email', 'Incorrect email').normalizeEmail().isEmail(),
+    check('password', 'Incorrect password').exists()
   ],
   async (req, res) => {
   try {
