@@ -23,12 +23,6 @@ export const useRoutes = isAuthenticated => {
         <Route path="/detail/:id">
           <DetailRecipePage />
         </Route>
-        <Route path="/auth" exact>
-          <AuthPage />
-        </Route>
-        <Route path="/login" exact>
-          <LoginPage />
-        </Route>
         <Redirect to="/"/>
       </Switch>
     )
