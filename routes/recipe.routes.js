@@ -5,10 +5,10 @@ const router = Router()
 
 router.post('/create', auth, async (req, res) => {
   try {
-    const { title, body } = req.body
+    const { title, mainText } = req.body
 
     const recipe = new Recipe({
-      title, body, owner: req.user.userId
+      title, mainText, owner: req.user.userId
     })
 
     await recipe.save()
@@ -16,7 +16,7 @@ router.post('/create', auth, async (req, res) => {
     res.status(201).json({ recipe })
 
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong. Try again' })
+    res.status(500).json({ message: `Something went wrong. Try again!` })
   }
 })
 

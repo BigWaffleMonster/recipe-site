@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json({ extended: true }))
  
 app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/link', require('./routes/recipe.routes'))
+app.use('/api/recipe', require('./routes/recipe.routes'))
 
 const PORT = config.get('port')
 
