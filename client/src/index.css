@@ -1,5 +1,9 @@
 @import "~materialize-css/dist/css/materialize.css";
 
 .auth-button-margin {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+
+.textarea-margin {
+  margin-top: 5px;
 }

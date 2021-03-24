@@ -21,7 +21,7 @@ export const CreateRecipePage = () => {
   return (
     <div className="row">
       <div className="col s6 offset-s3">
-        <h1>Auth</h1>
+        <h1>Create recipe</h1>
     
           <div className="input-field">
             <input
@@ -35,14 +35,16 @@ export const CreateRecipePage = () => {
           </div>
 
           <div className="input-field">
-            <input
+            <textarea 
+              placeholder="Input your text here"
+              className="textarea-margin"
               id="mainText"
               type="text"
               name="mainText"  
               value={mainText}
               onChange={(e => setMainText(e.target.value))}
-            />
-            <label htmlFor="mainText">Body</label>
+            >
+            </textarea>
           </div>
 
           <button onClick={pressHandler} disabled={loading} className="btn black">Create</button>
