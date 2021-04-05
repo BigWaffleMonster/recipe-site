@@ -3,12 +3,37 @@ const Recipe = require('../models/Recipe')
 const auth = require('../middleware/auth.middleware')
 const router = Router()
 
-router.post('/create', auth, async (req, res) => {
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+let path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './recipeImages/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  if(allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+
+let upload = multer({ storage, fileFilter });
+
+router.post('/create', auth, upload.single('image'), async (req, res) => {
   try {
     const { title, mainText } = req.body
+    const image = req.file.filename
 
     const recipe = new Recipe({
-      title, mainText, owner: req.user.userId
+      title, mainText, image, owner: req.user.userId
     })
 
     await recipe.save()
@@ -16,7 +41,7 @@ router.post('/create', auth, async (req, res) => {
     res.status(201).json({ recipe })
 
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong. Try again!` })
+    res.status(500).json({ message: `Something went wrong. Try again!, ${error}` })
   }
 })
 
