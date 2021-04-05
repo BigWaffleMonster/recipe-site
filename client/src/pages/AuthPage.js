@@ -45,7 +45,7 @@ export const AuthPage = () => {
         
         <div className="card blue-grey darken-2">
           <div className="card-content white-text">
-            <span className="card-title">Sing up/in</span>  {/* mb devide into 2 diff pages */}
+            <span className="card-title">Sign up/in</span>  {/* mb devide into 2 diff pages */}
             <div>
   
               <div className="input-field">
@@ -76,8 +76,8 @@ export const AuthPage = () => {
           </div>
           
           <div className="card-action">
-            <button onClick={registerHandler} disabled={loading} className="btn red auth-button-margin">Sing up</button>
-            <button onClick={loginHandler} disabled={loading} className="btn blue">Sing in</button>
+            <button onClick={registerHandler} disabled={loading} className="btn red auth-button-margin">Sign up</button>
+            <button onClick={loginHandler} disabled={loading} className="btn blue">Sign in</button>
           </div>
           
         </div>

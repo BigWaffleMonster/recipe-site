@@ -20,7 +20,7 @@ export const NavBar = () => {
           <li><NavLink to="/search">Search</NavLink></li>
           <li><NavLink to="/create">Create</NavLink></li>
           {auth.isAuthenticated && <li><a href="/" onClick={logoutHandler}>Log out</a></li>}
-          {!auth.isAuthenticated && <li><NavLink to="/auth">Sing in</NavLink></li>}
+          {!auth.isAuthenticated && <li><NavLink to="/auth">Sign in</NavLink></li>}
         </ul>
       </div>
     </nav>

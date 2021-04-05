@@ -19,11 +19,9 @@ export const CreateRecipePage = () => {
     formData.append('image', image)
 
     try {
-      console.log(title, mainText, image)
       const data = await request('/api/recipe/create', 'POST', formData, {
         Authorization: `Bearer ${auth.token}`
       })
-      console.log(data)
     } catch (e) {}
   }
 
