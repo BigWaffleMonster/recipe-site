@@ -4,10 +4,10 @@ export const useHttp = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const request = useCallback(async (url, method = 'GET', body = 'null', headers = {}) => {
+  const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
     setLoading(true)
     try {
-      if ('email' in body) {
+      if (!!body && 'email' in body) {
         body = JSON.stringify(body)
         headers['Content-Type'] = 'application/json'
       }

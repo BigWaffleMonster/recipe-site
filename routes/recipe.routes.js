@@ -45,17 +45,16 @@ router.post('/create', auth, upload.single('image'), async (req, res) => {
   }
 })
 
-router.get('/search/:recipeName', auth, async (req, res) => {
+router.get('/:recipeName', auth, async (req, res) => {
   try {
-    console.log(req.params.recipeName)
-    const recipes = await Recipe.find({ title: req.params.recipeName })
+    const recipes = await Recipe.find({ title:{$regex: req.params.recipeName } })
     res.json(recipes)
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong. Try again' })
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
   }
 })
 
-router.get('/aa/:id', auth, async (req, res) => {
+router.get('/detail/:id', auth, async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.params.id)
     res.json(recipe)

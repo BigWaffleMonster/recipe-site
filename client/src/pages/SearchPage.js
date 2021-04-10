@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useCallback } from 'react'
 import { AuthContext } from '../context/auth.context'
 import { useHttp } from '../hooks/http.hook'
+import {RecipeCard} from '../components/RecipeCard'
+
 
 export const SearchPage = () => {
   const auth = useContext(AuthContext)
@@ -9,15 +11,15 @@ export const SearchPage = () => {
   const [recipeName, setRecipeName] = useState('')
   const [recipes, setRecipes] = useState([])
 
-  const searchHandler = async () => {
+
+  const searchHandler = useCallback(async (recipeName) => {
     try {
-      const data = await request(`/api/recipe/search/${recipeName}`, 'GET', null, {
+      const data = await request(`/api/recipe/${recipeName}`, 'GET', null, {
         Authorization: `Bearer ${auth.token}`
       })
-      console.log(data)
       setRecipes(data)
     } catch (e) {}
-  }
+  }, [request, auth])
 
   return (
     <div className="row">
@@ -33,7 +35,23 @@ export const SearchPage = () => {
           />
         </div>
 
-        <button onClick={searchHandler} className="btn">Search</button>
+        <button
+          onClick={() => searchHandler(recipeName)}
+          disabled={loading}
+          className="btn"
+        >
+          Search
+        </button>
+
+        <button
+          onClick={() => setRecipeName('')}
+          disabled={loading}
+          className="btn btn-clear"
+        >
+          <i className="material-icons">clear</i>
+        </button>
+
+        {recipes && <RecipeCard recipes={recipes}/>}
 
       </div>
     </div>

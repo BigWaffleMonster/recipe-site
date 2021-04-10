@@ -7,7 +7,7 @@ const schema = new Schema({
   date: {type: Date, default: Date.now},
   likes: {type: Number, default: 0},
   owner: {type: Types.ObjectId, ref: 'User'},
-  comments: [{type: Types.ObjectId, ref: 'Comment'}] 
+  comments: [{type: Types.ObjectId, ref: 'Comment'}]
 })
 
 module.exports = model('Recipe', schema)
