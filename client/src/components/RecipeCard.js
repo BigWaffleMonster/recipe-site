@@ -1,15 +1,32 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
+
+import logo from './7cee81ef-4fb2-41c7-bb0d-2756c4a1d470-1618231356630.jpg'
+
 
 export const RecipeCard = ({ recipes }) => {
   return (
-    <div>
-      <ul>
-        { recipes.map((recipe, index) => {
+    <div className="row">
+     <div className="col s12">
+        {recipes.map((recipe, index) => {
           return (
-            <li key={index}>{ recipe.title }</li>
+            <div className="card" key={index}>
+              <div className="card-image">
+                <img src={logo} alt="recipe image"/>
+              </div>
+              <div className="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+              </div>
+              <div className="card-action">
+                <NavLink to={`/detail/${recipe._id}`}>{recipe.title}</NavLink>
+              </div>
+            </div>
           )
         })}
-      </ul>
-    </div>
+        
+     </div>
+   </div>
   )
 }
+

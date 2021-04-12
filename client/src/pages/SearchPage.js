@@ -19,7 +19,7 @@ export const SearchPage = () => {
       })
       setRecipes(data)
     } catch (e) {}
-  }, [request, auth])
+  }, [request, auth, recipeName])
 
   return (
     <div className="row">
