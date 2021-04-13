@@ -15,8 +15,8 @@ export const NavBar = () => {
   return (
     <nav>
       <div className="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="#" className="brand-logo">Logo</a>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><NavLink to="/search">Search</NavLink></li>
           <li><NavLink to="/create">Create</NavLink></li>
           {auth.isAuthenticated && <li><a href="/" onClick={logoutHandler}>Log out</a></li>}

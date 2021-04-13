@@ -1,10 +1,13 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-import logo from './7cee81ef-4fb2-41c7-bb0d-2756c4a1d470-1618231356630.jpg'
-
-
 export const RecipeCard = ({ recipes }) => {
+  
+  const getPath = (recipe) => {
+    const path = require(`./recipeImages/${recipe.image}`)
+    return path.default
+  }
+
   return (
     <div className="row">
      <div className="col s12">
@@ -12,7 +15,7 @@ export const RecipeCard = ({ recipes }) => {
           return (
             <div className="card" key={index}>
               <div className="card-image">
-                <img src={logo} alt="recipe image"/>
+                <img src={getPath(recipe)} alt="recipe image"/>
               </div>
               <div className="card-content">
                 <p>I am a very simple card. I am good at containing small bits of information.
@@ -23,7 +26,7 @@ export const RecipeCard = ({ recipes }) => {
               </div>
             </div>
           )
-        })}
+        })} 
         
      </div>
    </div>

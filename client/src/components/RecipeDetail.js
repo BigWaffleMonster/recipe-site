@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RecipeDetailPage = ({ recipe }) => {
+export const RecipeDetail = ({ recipe }) => {
   return (
     <>
       <h1>{recipe.title}</h1>

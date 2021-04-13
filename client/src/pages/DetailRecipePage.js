@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { RecipeDetailPage } from '../components/RecipeDetail'
+import { RecipeDetail } from '../components/RecipeDetail'
 import { AuthContext } from '../context/auth.context'
 import { useHttp } from '../hooks/http.hook'
 
@@ -28,7 +28,7 @@ export const DetailRecipePage = () => {
   return (
     <div className="row">
       <div className="col s6 offset-s3">
-        {!loading && recipe && <RecipeDetailPage recipe={recipe}/> }
+        {!loading && recipe && <RecipeDetail recipe={recipe}/> }
       </div>
     </div>
   )
