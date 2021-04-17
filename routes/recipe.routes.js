@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const Recipe = require('../models/Recipe')
+const Comment = require('../models/Comment')
 const auth = require('../middleware/auth.middleware')
 const router = Router()
 
@@ -42,6 +43,32 @@ router.post('/create', auth, upload.single('image'), async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: `Something went wrong. Try again!, ${error}` })
+  }
+})
+
+router.post('/detail/like/:id', auth, async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id)
+    recipe.likes++
+    await recipe.save()
+    res.json({ message: 'Cool'})
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
+  }
+})
+
+router.post('/detail/comment/:id', auth, async (req, res) => {
+  try {
+    const {commentText} = req.body
+
+    const comment = new Comment({
+      commentText, owner: req.user.userId, recipe: req.params.id
+    })
+
+    await comment.save()
+    res.json({ comment })
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
   }
 })
 
