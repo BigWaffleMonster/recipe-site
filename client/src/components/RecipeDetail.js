@@ -35,6 +35,7 @@ export const RecipeDetail = ({ recipe }) => {
       >
         <i className="material-icons">insert_emoticon</i>
       </button>
+
       <h5>{recipe.likes}</h5>
 
       <textarea
