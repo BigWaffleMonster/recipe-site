@@ -1,30 +1,57 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useCallback, useEffect} from 'react'
 import { AuthContext } from '../context/auth.context'
 import { useHttp } from '../hooks/http.hook'
+import {CommentList} from './CommentList'
 
 export const RecipeDetail = ({ recipe }) => {
-  const auth = useContext(AuthContext)
+  const {token} = useContext(AuthContext)
   const {request, loading} = useHttp()
   const [commentText, setCommentText] = useState('')
+  const [commentList, setCommentList] = useState(null)
+  const [recipeId, setRecipeId] = useState(recipe._id)
+  const [isClicked, setIsClicked] = useState(false)
+
+  const getPath = (recipe) => {
+    const path = require(`./recipeImages/${recipe.image}`)
+    return path.default
+  }
 
   const likeHandler = async () => {
     try {
-      const data = await request(`/api/recipe/detail/like/${recipe._id}`, 'POST', null, {
-        Authorization: `Bearer ${auth.token}`
+      const data = await request(`/api/recipe/detail/like/${recipeId}`, 'POST', null, {
+        Authorization: `Bearer ${token}`
       })
     } catch (e) {}
   }
 
   const commentHandler = async () => {
     try {
-      const data = await request(`/api/recipe/detail/comment/${recipe._id}`, 'POST', {commentText}, {
-        Authorization: `Bearer ${auth.token}`
+      setIsClicked(true)
+      const data = await request(`/api/comment/setComment/${recipeId}`, 'POST', {commentText}, {
+        Authorization: `Bearer ${token}`
       })
+      setIsClicked(false)
+      setCommentText('')
     } catch (e) {}
   }
 
+  const commentListHandler = useCallback( async () => {
+    try {
+      const data = await request(`/api/comment/commentList/${recipeId}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+      setCommentList(data)
+    } catch (e) {}
+  }, [recipeId, request, token])
+
+  useEffect(() => {
+    commentListHandler()
+  }, [commentListHandler, isClicked])
+
   return (
     <>
+
+      <img src={getPath(recipe)} alt="recipe image"/>
       <h1>{recipe.title}</h1>
       <h2>{recipe.mainText}</h2>
 
@@ -55,6 +82,8 @@ export const RecipeDetail = ({ recipe }) => {
       >
         Leave comment
       </button>
+
+      {commentList && <CommentList commentList={commentList}/>}
 
     </>
   )

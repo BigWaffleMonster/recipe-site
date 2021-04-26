@@ -8,7 +8,6 @@ export const useHttp = () => {
     setLoading(true)
     try {
       if (!!body && 'email' in body || !!body && 'commentText' in body) {
-        console.log('ssss')
         body = JSON.stringify(body)
         headers['Content-Type'] = 'application/json'
       }
