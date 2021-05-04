@@ -27,7 +27,7 @@ export const DetailRecipePage = () => {
 
   return (
     <div className="row">
-      <div className="col s6 offset-s3">
+      <div className="col s12">
         {!loading && recipe && <RecipeDetail recipe={recipe}/> }
       </div>
     </div>

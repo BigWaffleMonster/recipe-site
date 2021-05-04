@@ -6,6 +6,7 @@ import {CreateRecipePage} from './pages/CreateRecipePage'
 import {AuthPage} from './pages/AuthPage'
 import {LoginPage} from './pages/LoginPage'
 import {DetailRecipePage} from './pages/DetailRecipePage'
+import {UserRecipes} from './pages/UserRecipes'
 
 export const useRoutes = isAuthenticated => {
   if (isAuthenticated) {
@@ -17,11 +18,14 @@ export const useRoutes = isAuthenticated => {
         <Route path="/search" exact>
           <SearchPage />
         </Route>
-        <Route path="/create">
+        <Route path="/create" exact>
           <CreateRecipePage />
         </Route>
         <Route path="/detail/:id">
           <DetailRecipePage />
+        </Route>
+        <Route path="/user_recipes/:id" exact>
+          <UserRecipes />
         </Route>
         <Redirect to="/"/>
       </Switch>

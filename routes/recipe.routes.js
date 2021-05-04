@@ -76,7 +76,14 @@ router.get('/detail/:id', auth, async (req, res) => {
   }
 })
 
-
+router.get('/getUserRecipes/:id', auth, async (req, res) => {
+  try {
+    const userRecipes = await Recipe.find({ owner: req.params.id })
+    res.json(userRecipes)
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
+  }
+})
 
 
 
