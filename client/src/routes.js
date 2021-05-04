@@ -27,6 +27,9 @@ export const useRoutes = isAuthenticated => {
         <Route path="/user_recipes/:id" exact>
           <UserRecipes />
         </Route>
+        {/*<Route path="/user_recipe/:id/detail/:article_id" exact>*/}
+        {/*  <UserRecipes />*/}
+        {/*</Route>*/}
         <Redirect to="/"/>
       </Switch>
     )

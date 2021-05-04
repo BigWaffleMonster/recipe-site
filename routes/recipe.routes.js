@@ -2,6 +2,7 @@ const {Router} = require('express')
 const Recipe = require('../models/Recipe')
 const Comment = require('../models/Comment')
 const auth = require('../middleware/auth.middleware')
+const User = require('../models/User')
 const router = Router()
 
 const multer = require('multer');
@@ -80,6 +81,16 @@ router.get('/getUserRecipes/:id', auth, async (req, res) => {
   try {
     const userRecipes = await Recipe.find({ owner: req.params.id })
     res.json(userRecipes)
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
+  }
+})
+
+router.delete('/delete_userRecipe/:id', auth, async (req, res) => {
+  try {
+    await Recipe.findByIdAndDelete({ _id: req.params.id })
+    await Comment.deleteMany({ recipe: req.params.id })
+    res.json(200)
   } catch (error) {
     res.status(500).json({ message: `Something went wrong. Try again ${error}` })
   }
