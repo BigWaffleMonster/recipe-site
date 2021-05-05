@@ -7,12 +7,11 @@ export const UserRecipesList = ({ userRecipes }) => {
   const {token} = useContext(AuthContext)
   const {loading, request} = useHttp()
 
-  const [recipeId, setRecipeId] = useState('')
-
-  const deleteHandler = async () => {
+  const deleteHandler = async (id) => {
     try {
-      console.log()
-      // await request(`/api/recipe//delete_userRecipe/${}`)
+      await request(`/api/recipe//delete_userRecipe/${id}`, 'DELETE', null, {
+        Authorization: `Bearer ${token}`
+      })
     } catch (e) {}
   }
 
@@ -28,7 +27,7 @@ export const UserRecipesList = ({ userRecipes }) => {
                 <td>{recipe.title}</td>
                 <td>{recipe.date.toString()}</td>
                 <td><NavLink to="/"><button className="btn yellow darken-3">Update</button></NavLink></td>
-                <td><button className="btn red" onClick={deleteHandler}>Delete</button></td>
+                <td><button className="btn red" onClick={deleteHandler.bind(null, recipe._id)}>Delete</button></td>
               </tr>
             )
           })}

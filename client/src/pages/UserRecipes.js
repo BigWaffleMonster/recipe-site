@@ -13,10 +13,10 @@ export const UserRecipes = () => {
 
   const getUserRecipes = useCallback( async () => {
     try {
-      const data = await request(`/api/recipe/getUserRecipes/${userId}`, 'GET', null, {
-        Authorization: `Bearer ${token}`
-      })
-      setUserRecipes(data)
+        const data = await request(`/api/recipe/getUserRecipes/${userId}`, 'GET', null, {
+          Authorization: `Bearer ${token}`
+        })
+        setUserRecipes(data)
     } catch (e) {}
   }, [token, userId, request])
 
