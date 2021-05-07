@@ -77,6 +77,7 @@ router.get('/detail/:id', auth, async (req, res) => {
   }
 })
 
+
 router.get('/getUserRecipes/:id', auth, async (req, res) => {
   try {
     const userRecipes = await Recipe.find({ owner: req.params.id })

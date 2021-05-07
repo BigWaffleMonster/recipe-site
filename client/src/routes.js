@@ -7,6 +7,7 @@ import {AuthPage} from './pages/AuthPage'
 import {LoginPage} from './pages/LoginPage'
 import {DetailRecipePage} from './pages/DetailRecipePage'
 import {UserRecipes} from './pages/UserRecipes'
+import {UserRecipeUpdate} from './pages/UserRecipeUpdate'
 
 export const useRoutes = isAuthenticated => {
   if (isAuthenticated) {
@@ -27,9 +28,9 @@ export const useRoutes = isAuthenticated => {
         <Route path="/user_recipes/:id" exact>
           <UserRecipes />
         </Route>
-        {/*<Route path="/user_recipe/:id/detail/:article_id" exact>*/}
-        {/*  <UserRecipes />*/}
-        {/*</Route>*/}
+        <Route path="/user_recipe/:id/detail/:article_id" exact>
+          <UserRecipeUpdate />
+        </Route>
         <Redirect to="/"/>
       </Switch>
     )
