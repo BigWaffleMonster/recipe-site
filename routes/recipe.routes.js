@@ -97,6 +97,22 @@ router.delete('/delete_userRecipe/:id', auth, async (req, res) => {
   }
 })
 
+router.post('/userRecipe/update/:id', auth, async (req, res) => {
+  try {
+    const {title, mainText} = req.body
+
+    const recipe = await Recipe.findByIdAndUpdate({ _id: req.params.id }, {
+      title, mainText
+    })
+
+    await recipe.save()
+
+    res.status(201).json({ recipe })
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
+  }
+})
+
 
 
 module.exports = router

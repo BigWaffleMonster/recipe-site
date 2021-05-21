@@ -7,7 +7,7 @@ export const useHttp = () => {
   const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
     setLoading(true)
     try {
-      if (!!body && 'email' in body || !!body && 'commentText' in body) {
+      if (!!body && 'email' in body || !!body && 'commentText' in body || !!body && 'mainText' in body) {
         body = JSON.stringify(body)
         headers['Content-Type'] = 'application/json'
       }

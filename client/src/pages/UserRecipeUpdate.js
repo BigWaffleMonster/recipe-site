@@ -17,7 +17,6 @@ export const UserRecipeUpdate = () => {
         Authorization: `Bearer ${token}`
       })
       setRecipe(data)
-      console.log(data)
     } catch (e) {}
   }, [token, recipeId, request])
 
@@ -29,7 +28,7 @@ export const UserRecipeUpdate = () => {
     <div className="row">
       <div className="col s6 offset-s3">
         <h1>Update your recipe</h1>
-        { !loading && <UserRecipeUpdateComponent recipe={recipe}/> }
+        { !loading && recipe && <UserRecipeUpdateComponent recipe={recipe}/> }
       </div>
     </div>
   )
