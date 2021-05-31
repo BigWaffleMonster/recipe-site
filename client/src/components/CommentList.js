@@ -7,7 +7,7 @@ export const CommentList = ({ commentList }) => {
       <ul>
         { commentList.map((comment, index) => {
           return (
-            <li key={index}>{comment.commentText}</li>
+            <li key={index}>{comment.commentText} || {comment.email}</li>
           )
         }) }
       </ul>

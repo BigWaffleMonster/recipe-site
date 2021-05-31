@@ -16,7 +16,7 @@ export const RecipeDetail = ({ recipe }) => {
     return path.default
   }
 
-  const likeHandler = async () => {
+  const favoritesHandler = async () => {
     try {
       const data = await request(`/api/recipe/detail/like/${recipeId}`, 'POST', null, {
         Authorization: `Bearer ${token}`
@@ -58,12 +58,10 @@ export const RecipeDetail = ({ recipe }) => {
       <button
         className="btn"
         disabled={loading}
-        onClick={likeHandler}
+        onClick={""}
       >
         <i className="material-icons">insert_emoticon</i>
       </button>
-
-      <h5>{recipe.likes}</h5>
 
       <textarea
         placeholder="Input your text here"

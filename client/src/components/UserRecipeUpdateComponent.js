@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, {useState, useContext, useCallback, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
 import { useHttp } from '../hooks/http.hook'
+import {CommentList} from './CommentList'
 
 export const UserRecipeUpdateComponent = ({ recipe }) => {
   const history = useHistory()

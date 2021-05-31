@@ -36,6 +36,7 @@ export const CreateRecipePage = () => {
                 id="title"
                 type="text"
                 name="title"
+                placeholder="Title"
                 value={title}
                 onChange={(e => setTile(e.target.value))}
               />

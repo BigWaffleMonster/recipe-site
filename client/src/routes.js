@@ -41,12 +41,6 @@ export const useRoutes = isAuthenticated => {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/search" exact>
-        <SearchPage />
-      </Route>
-      <Route path="/detail/:id">
-        <DetailRecipePage />
-      </Route>
       <Route path="/auth" exact>
         <AuthPage />
       </Route>
