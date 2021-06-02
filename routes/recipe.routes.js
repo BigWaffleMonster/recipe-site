@@ -113,30 +113,5 @@ router.post('/userRecipe/update/:id', auth, async (req, res) => {
   }
 })
 
-router.post('/userRecipe/add/:id', auth, async (req, res) => {
-  try {
-    const recipe = await Recipe.findById({ _id: req.params.id })
-
-    const currentUser = await User.findById({ _id: req.user.userId })
-
-    currentUser.favouritesRecipes.push(recipe)
-
-    await currentUser.save()
-
-    res.status(201).json({ currentUser })
-  } catch (error) {
-    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
-  }
-})
-
-router.get('/getUserFavouritesRecipes', auth, async (req, res) => {
-  try {
-    const userFavourites = await User.find({ _id: req.user.id } )
-    res.json(userFavourites)
-  } catch (error) {
-    res.status(500).json({ message: `Something went wrong. Try again ${error}` })
-  }
-})
-
 
 module.exports = router

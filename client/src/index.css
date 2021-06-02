@@ -12,7 +12,30 @@
   margin-left: 5rem;
 }
 
-.table {
+.home_name {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
 
+.moto_text {
+  text-align: justify;
+}
 
+.question {
+  margin-top: 10rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.list {
+  text-align: center;
+}
+
+.todo {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15rem;
 }
