@@ -16,14 +16,6 @@ export const RecipeDetail = ({ recipe }) => {
     return path.default
   }
 
-  const favoritesHandler = async () => {
-    try {
-      const data = await request(`/api/recipe/userRecipe/add/${recipeId}`, 'POST', null, {
-        Authorization: `Bearer ${token}`
-      })
-    } catch (e) {}
-  }
-
   const commentHandler = async () => {
     try {
       setIsClicked(true)
@@ -54,14 +46,6 @@ export const RecipeDetail = ({ recipe }) => {
       <img src={getPath(recipe)} alt="recipe image"/>
       <h1>{recipe.title}</h1>
       <h2>{recipe.mainText}</h2>
-
-      <button
-        className="btn"
-        disabled={loading}
-        onClick={favoritesHandler}
-      >
-        <i className="material-icons">insert_emoticon</i>
-      </button>
 
       <textarea
         placeholder="Input your text here"
